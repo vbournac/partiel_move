@@ -1,0 +1,10 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: move_printer
+    relative_path: urdf/printer.urdf
+  SRDF:
+    relative_path: config/printer3D.srdf
+  CONFIG:
+    author_name: va
+    author_email: valentin.bournac@cpe.fr
+    generated_timestamp: 1543593180

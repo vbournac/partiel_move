@@ -1,0 +1,6 @@
+controller_list:
+  - name: fake_printer_group_controller
+    joints:
+      - base_to_x
+      - link_x_to_y
+      - link_y_to_extruder
