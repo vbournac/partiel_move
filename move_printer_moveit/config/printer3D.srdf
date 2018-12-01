@@ -11,12 +11,12 @@
     <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
     <group name="printer_group">
         <link name="base_link" />
-        <link name="plateau" />
         <link name="link_x" />
         <link name="link_y" />
         <link name="extruder_link" />
         <joint name="base_to_x" />
         <joint name="link_x_to_y" />
+        <joint name="link_y_to_extruder" />
         <chain base_link="base_link" tip_link="extruder_link" />
     </group>
     <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
