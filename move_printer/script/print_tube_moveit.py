@@ -7,6 +7,7 @@ import moveit_commander
 import moveit_msgs.msg
 import geometry_msgs.msg
 import math
+from move_printer.srv import *
 
 class print_tube_moveit:
   waypoints= []
@@ -22,25 +23,25 @@ class print_tube_moveit:
     self.group.set_named_target('init_pose')
     self.group.go(wait=True)
 
-    self.pose_A = geometry_msgs.msg.Pose()
-    self.pose_A .position.x = 0.05
-    self.pose_A.position.y = 0.0
-    self.pose_A.position.z = -0.2
+    #self.pose_A = geometry_msgs.msg.Pose()
+    #self.pose_A .position.x = 0.05
+    #self.pose_A.position.y = 0.0
+    #self.pose_A.position.z = -0.2
 
-    self.pose_B = geometry_msgs.msg.Pose()
-    self.pose_B .position.x = 0.0
-    self.pose_B.position.y = 0.05
-    self.pose_B.position.z = -0.2
+    #self.pose_B = geometry_msgs.msg.Pose()
+    #self.pose_B .position.x = 0.0
+    #self.pose_B.position.y = 0.05
+    #self.pose_B.position.z = -0.2
 
-    self.pose_C = geometry_msgs.msg.Pose()
-    self.pose_C .position.x = -0.05
-    self.pose_C.position.y = 0.0
-    self.pose_C.position.z = -0.2
+    #self.pose_C = geometry_msgs.msg.Pose()
+    #self.pose_C .position.x = -0.05
+    #self.pose_C.position.y = 0.0
+    #self.pose_C.position.z = -0.2
 
-    self.pose_D = geometry_msgs.msg.Pose()
-    self.pose_D .position.x = 0.0
-    self.pose_D.position.y = -0.05
-    self.pose_D.position.z = -0.2
+    #self.pose_D = geometry_msgs.msg.Pose()
+    #self.pose_D .position.x = 0.0
+    #self.pose_D.position.y = -0.05
+    #self.pose_D.position.z = -0.2
 
     rospy.sleep(3)
 
