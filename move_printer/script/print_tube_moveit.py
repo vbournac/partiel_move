@@ -38,30 +38,45 @@ class print_tube_moveit:
         if((req.diameter > 0.245 or req.diameter<=0)  or (req.height>0.3 or req.height<=0)):
             return False
 
-        extrusion.data= True
+        extrusion.data= False
         self.extrusion_service.publish(extrusion)
 	self.current_pose= self.group.get_current_pose().pose
-	self.current_pose.position.z = -0.3
+	self.current_pose.position.z = 0.025
 	self.waypoints.append(self.group.get_current_pose().pose)
+        self.premiere_pose = geometry_msgs.msg.Pose()
+        self.premiere_pose.position.x = diameter/2*math.cos(2*3.14/num_point)
+        self.premiere_pose.position.y = diameter/2*math.sin(2*3.14/num_point)
+        self.premiere_pose.position.z = 0.025+height/num_point
+        self.waypoints.append(self.premiere_pose)
+
+        (self.plan,self.fraction)=self.group.compute_cartesian_path(self.waypoints,0.01,1000)
+    	self.group.execute(self.plan)
+        self.waypoints=[]
+        extrusion.data=True
+        self.extrusion_service.publish(extrusion)
 
 	for i in range(1, num_point):
         	for j in range(1, num_point):
 			self.next_pose = geometry_msgs.msg.Pose()
 			self.next_pose.position.x = diameter/2*math.cos(2*3.14*j/num_point)
 			self.next_pose.position.y = diameter/2*math.sin(2*3.14*j/num_point)
-			self.next_pose.position.z = -0.3+i*height/num_point
+			self.next_pose.position.z = 0.025+i*height/num_point
 			self.waypoints.append(self.next_pose)
 
 
 
 	(self.plan,self.fraction)=self.group.compute_cartesian_path(self.waypoints,0.01,1000)
-	rospy.sleep(3)
+	# rospy.sleep(3)
 	self.group.execute(self.plan)
         extrusion.data = False
         self.extrusion_service.publish(extrusion)
+
 	#print self.waypoints
 
 	rospy.sleep(3)
+        self.group.set_named_target('init_pose')
+        self.group.go(wait=True)
+        return(True)
 
 
 if __name__ == '__main__':

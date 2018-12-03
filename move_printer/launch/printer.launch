@@ -8,6 +8,10 @@
 
   <node name="extruder" pkg="move_printer" type="extruder.py">
 	<rosparam command="load" file="$(find move_printer)/config/plastic.yaml"/>
+  <rosparam param ='/extruder/plastic/color/r'> 1</rosparam>
+  <rosparam param ='/extruder/plastic/color/g'> 0</rosparam>
+  <rosparam param ='/extruder/plastic/color/b'> 1</rosparam>
+  <rosparam param ='/extruder/plastic/material'> PLA</rosparam>
   </node>
 
 </launch>
